@@ -26,8 +26,17 @@ public class SzachyActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        gracz2.startZegar();
-                        gracz1.stopZegar();
+                        if(gracz1.isDzialajacy()){
+                            gracz2.startZegar();
+                            gracz1.stopZegar();
+                            button.setText("GRACZ 2");
+                        }
+                        else {
+                            gracz2.stopZegar();
+                            gracz1.startZegar();
+                            button.setText("GRACZ 1");
+                        }
+
                     }
                 }
         );

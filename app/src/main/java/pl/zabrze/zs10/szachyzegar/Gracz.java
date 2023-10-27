@@ -1,11 +1,14 @@
 package pl.zabrze.zs10.szachyzegar;
 
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
+
 public class Gracz {
     private CountDownTimer timer;
-    private int sekund =180;
+    private int mniejszesekund =1800;
     private boolean dzialajacy;
     private TextView textView;
 
@@ -22,16 +25,18 @@ public class Gracz {
         this.dzialajacy = dzialajacy;
     }
     public void  stopZegar(){
+        dzialajacy = false;
         if(timer!=null){
             timer.cancel();
         }
     }
     public  void startZegar(){
-        timer = new CountDownTimer(sekund*1000, 1000) {
+        dzialajacy = true;
+        timer = new CountDownTimer(mniejszesekund*100, 100) {
             @Override
             public void onTick(long l) {
-                sekund = (int) l/1000;
-                wypiszSekundy(sekund);
+                mniejszesekund = (int) l/100;
+                wypiszSekundy(mniejszesekund/10);
             }
 
             @Override
@@ -45,5 +50,11 @@ public class Gracz {
         int minuty = s/60;
         int sekundy = s%60;
         textView.setText(String.format("%02d : %02d",minuty,sekundy));
+        if(s<30) {
+            textView.setTextColor(Color.RED);
+        }
     }
 }
+//TODO rozne czasy
+//TODO ikona
+//TODO wyglad
