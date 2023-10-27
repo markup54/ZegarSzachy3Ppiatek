@@ -9,8 +9,9 @@ public class Gracz {
     private boolean dzialajacy;
     private TextView textView;
 
-    public Gracz(boolean dzialajacy) {
+    public Gracz(boolean dzialajacy,TextView txt) {
         this.dzialajacy = dzialajacy;
+        textView = txt;
     }
 
     public boolean isDzialajacy() {
